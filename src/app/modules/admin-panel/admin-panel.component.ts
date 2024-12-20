@@ -18,6 +18,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {HotToastService} from '@ngxpert/hot-toast';
 import {TranslatePipe, TranslateService} from '@ngx-translate/core';
 import {UserService} from '../../shared/services/user.service';
+import {forkJoin} from 'rxjs';
 
 @Component({
   selector: 'app-admin-panel',
@@ -44,11 +45,7 @@ import {UserService} from '../../shared/services/user.service';
 export class AdminPanelComponent implements OnInit {
   displayedColumns: string[] = ['select', 'id', 'fullName', 'username', 'email', 'role'];
   dataSource: MatTableDataSource<User> = new MatTableDataSource<User>();
-  users: User[] = [
-    new User(1, 'John Doe', 'johndoe', 'john@example.com', 'Admin'),
-    new User(2, 'Jane Smith', 'janesmith', 'jane@example.com', 'User'),
-    new User(3, 'Alice Johnson', 'alicej', 'alice@example.com', 'User'),
-  ];
+  users: User[] = [];
   selection = new Set<User>();
   length = 0;
   pageSize = 3;
@@ -127,24 +124,43 @@ export class AdminPanelComponent implements OnInit {
         data: { user: { ...selectedUser } },
       });
 
-      dialogRef.afterClosed().subscribe((result: UserDialogData | undefined) => {
+      dialogRef.afterClosed().subscribe((result: User | undefined) => {
         if (result) {
-          Object.assign(selectedUser, result);
-          this.toast.success(this.translate.instant('TOAST.USER_UPDATED'));
-          this.updateTableData();
-          this.selection.clear();
+          this.userService.editUser(result.id, result).subscribe(() => {
+            this.userService.getUsers(this.pageIndex, this.pageSize).subscribe((response) => {
+              this.users = response.users;
+              this.length = response.total;
+              this.updateTableData();
+            });
+            this.toast.success(this.translate.instant('TOAST.USER_UPDATED'));
+            this.selection.clear();
+          });
         }
       });
     }
   }
 
   removeSelectedUsers(): void {
-    this.users = this.users.filter((user) => !this.selection.has(user));
-    this.selection.clear();
-    this.length = this.users.length;
-    this.toast.success(this.translate.instant('TOAST.USER_REMOVED'));
-    this.updateTableData();
+    const removalObservables = Array.from(this.selection).map((user) =>
+      this.userService.removeUser(user.id)
+    );
+
+    forkJoin(removalObservables).subscribe({
+      next: () => {
+        this.users = this.users.filter(
+          (user) => !Array.from(this.selection).some((selected) => selected.id === user.id)
+        );
+        this.selection.clear();
+        this.length = this.users.length;
+        this.toast.success(this.translate.instant('TOAST.USER_REMOVED'));
+        this.updateTableData();
+      },
+      error: () => {
+        this.toast.error(this.translate.instant('TOAST.REMOVAL_FAILED'));
+      },
+    });
   }
+
 
   getEnumKey(enumValue: any): string | undefined {
     return Object.keys(ROLE).find(key => ROLE[key as keyof typeof ROLE] === enumValue);
