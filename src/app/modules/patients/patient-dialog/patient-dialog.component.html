@@ -1,0 +1,74 @@
+<h1 mat-dialog-title>{{ data ? ("EDIT_PATIENT" | translate) : ("ADD_PATIENT" | translate) }}</h1>
+<div mat-dialog-content>
+  <form *ngIf="!data" [formGroup]="patientForm" class="tab-content">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>{{ 'PATIENTS.POLICY_NUMBER' | translate }}</mat-label>
+      <input matInput formControlName="policyNumber" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>{{ 'PATIENTS.FULL_NAME' | translate }}</mat-label>
+      <input matInput formControlName="fullName" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>{{ 'PATIENTS.SEX' | translate }}</mat-label>
+      <mat-select formControlName="gender">
+        <mat-option *ngFor="let type of genderTypes" [value]="type">
+          {{ 'GENDER.' + getEnumKey(type) | translate }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>{{ 'PATIENTS.BIRTH_DATE' | translate }}</mat-label>
+      <input matInput formControlName="birthDate" [matDatepicker]="picker" />
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </form>
+  <mat-tab-group>
+    <mat-tab label="{{ 'TABS.GENERAL' | translate }}" *ngIf="data">
+      <form [formGroup]="patientForm" class="tab-content">
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>{{ 'PATIENTS.POLICY_NUMBER' | translate }}</mat-label>
+          <input matInput formControlName="policyNumber" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>{{ 'PATIENTS.FULL_NAME' | translate }}</mat-label>
+          <input matInput formControlName="fullName" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>{{ 'PATIENTS.SEX' | translate }}</mat-label>
+          <mat-select formControlName="gender">
+            <mat-option *ngFor="let type of genderTypes" [value]="type">
+              {{ 'GENDER.' + getEnumKey(type) | translate }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>{{ 'PATIENTS.BIRTH_DATE' | translate }}</mat-label>
+          <input matInput formControlName="birthDate" [matDatepicker]="picker" />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </form>
+    </mat-tab>
+
+    <mat-tab *ngIf="data" label="{{ 'TABS.VISITS' | translate }}">
+      <app-visits [patientId]="data.uuid"></app-visits>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">{{ 'ACTIONS.CANCEL' | translate }}</button>
+  <button mat-flat-button color="primary" (click)="onSave()" [disabled]="isFormUnchanged() || patientForm.invalid">
+    {{ 'ACTIONS.SAVE' | translate }}
+  </button>
+</div>

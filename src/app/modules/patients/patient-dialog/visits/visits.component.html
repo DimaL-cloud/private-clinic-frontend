@@ -1,0 +1,57 @@
+<div class="actions">
+  <button mat-flat-button color="primary" (click)="addVisit()">
+    {{ 'ACTIONS.ADD' | translate }}
+  </button>
+  <button mat-flat-button color="primary" [disabled]="visitSelection.size !== 1" (click)="editVisit()">
+    {{ 'ACTIONS.EDIT' | translate }}
+  </button>
+  <button mat-flat-button color="primary" [disabled]="visitSelection.size === 0" (click)="removeSelectedVisits()">
+    {{ 'ACTIONS.REMOVE' | translate }}
+  </button>
+  <button mat-flat-button color="primary" [disabled]="visitSelection.size !== 1" (click)="generateReport()">
+    {{ 'ACTIONS.GENERATE_REPORT' | translate }}
+  </button>
+</div>
+
+<table mat-table [dataSource]="dataSource" class="visits-table">
+  <ng-container matColumnDef="select">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-checkbox
+        (change)="toggleSelectAllVisits($event)"
+        [checked]="isAllVisitsSelected()"
+      ></mat-checkbox>
+    </th>
+    <td mat-cell *matCellDef="let visit">
+      <mat-checkbox (change)="toggleVisitSelection(visit)" [checked]="visitSelection.has(visit)"></mat-checkbox>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef>{{ 'VISIT.DATE' | translate }}</th>
+    <td mat-cell *matCellDef="let visit">{{ visit.date | date }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="type">
+    <th mat-header-cell *matHeaderCellDef>{{ 'VISIT.TYPE.TITLE' | translate }}</th>
+    <td mat-cell *matCellDef="let visit">{{ ('VISIT.TYPE.' + getEnumKey(visit.type)) | translate }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="reason">
+    <th mat-header-cell *matHeaderCellDef>{{ 'VISIT.REASON' | translate }}</th>
+    <td mat-cell *matCellDef="let visit">{{ visit.reason }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="result">
+    <th mat-header-cell *matHeaderCellDef>{{ 'VISIT.RESULT' | translate }}</th>
+    <td mat-cell *matCellDef="let visit">{{ visit.result }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="diagnosis">
+    <th mat-header-cell *matHeaderCellDef>{{ 'VISIT.DIAGNOSIS' | translate }}</th>
+    <td mat-cell *matCellDef="let visit">{{ visit.diagnosis }}</td>
+  </ng-container>
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>

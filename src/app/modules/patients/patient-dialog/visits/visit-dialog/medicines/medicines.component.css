@@ -1,0 +1,10 @@
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.medicines-table {
+  width: 100%;
+}

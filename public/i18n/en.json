@@ -1,0 +1,114 @@
+{
+  "AUTHENTICATION": "Authentication",
+  "FORGOT_PASSWORD": "Forgot password?",
+  "LOGIN": "Login",
+  "LOGOUT": "Logout",
+  "USERNAME": "Username",
+  "USERNAME_REQUIRED": "Username is required",
+  "PASSWORD": "Password",
+  "NEW_PASSWORD": "New password",
+  "RESET_PASSWORD": "Reset password",
+  "CONFIRM_PASSWORD": "Confirm password",
+  "CHANGE_PASSWORD": "Change password",
+  "PASSWORD_REQUIRED": "Password is required",
+  "PASSWORDS_DO_NOT_MATCH": "Passwords do not match",
+  "SEND_PASSWORD_RESET_EMAIL": "Send password reset email",
+  "EMAIL": "Email",
+  "EMAIL_REQUIRED": "Email is required",
+  "EMAIL_FORMAT_INVALID": "Invalid email format",
+  "HOME": "Home",
+  "ADMIN_PANEL": "Admin panel",
+  "MY_PATIENTS": "My patients",
+  "ALL_USERS": "All users",
+  "PATIENTS": {
+    "POLICY_NUMBER": "Policy No.",
+    "NAME": "Name",
+    "SEX": "Sex",
+    "BIRTH_DATE": "Birth Date"
+  },
+  "ADD_PATIENT": "Add Patient",
+  "EDIT_PATIENT": "Edit Patient",
+  "ADD_VISIT": "Add Visit",
+  "EDIT_VISIT": "Edit Visit",
+  "ADD_USER": "Add User",
+  "EDIT_USER": "Edit User",
+  "VISIT": {
+    "DATE": "Date",
+    "TYPE": {
+      "TITLE": "Type",
+      "CONSULTATION": "Consultation",
+      "DIAGNOSIS": "Diagnosis",
+      "TREATMENT": "Treatment",
+      "FOLLOW_UP": "Follow-up",
+      "PREVENTION": "Prevention",
+      "CHECKUP": "Check-up",
+      "EMERGENCY": "Emergency",
+      "SURGERY": "Surgery",
+      "VACCINATION": "Vaccination",
+      "OTHER": "Other"
+    },
+    "REASON": "Reason",
+    "RESULT": "Result",
+    "DIAGNOSIS": "Diagnosis"
+  },
+  "ACTIONS": {
+    "ADD": "Add",
+    "EDIT": "Edit",
+    "REMOVE": "Remove",
+    "SAVE": "Save",
+    "CANCEL": "Cancel",
+    "GENERATE_REPORT": "Generate report"
+  },
+  "TABS": {
+    "GENERAL": "General information",
+    "VISITS": "Visits",
+    "MEDICINES": "Medicines"
+  },
+  "ADD_MEDICINE": "Add Medicine",
+  "EDIT_MEDICINE": "Edit Medicine",
+  "MEDICINE": {
+    "NAME": "Name",
+    "TYPE": {
+      "TITLE": "Type",
+      "TABLET": "Tablet",
+      "SYRUP": "Syrup",
+      "POWDER": "Powder",
+      "CAPSULE": "Capsule",
+      "OINTMENT": "Ointment",
+      "INJECTION": "Injection",
+      "OTHER": "Other"
+    },
+    "COMPOSITION": "Composition",
+    "USAGE_RECOMMENDATIONS": "Usage recommendations"
+  },
+  "GENDER": {
+    "MALE": "Male",
+    "FEMALE": "Female",
+    "NON_SPECIFIED": "Non-specified"
+  },
+  "USER": {
+    "FULL_NAME": "Full Name",
+    "ROLE": {
+      "TITLE": "Role",
+      "ADMIN": "Admin",
+      "DOCTOR": "Doctor"
+    },
+    "USERNAME": "Username",
+    "EMAIL": "Email"
+  },
+  "TOAST": {
+    "LOGIN_SUCCESSFUL": "Login successful",
+    "LOGIN_FAILED": "Login failed",
+    "USER_ADDED": "User added successfully",
+    "USER_UPDATED": "User updated successfully",
+    "USER_REMOVED": "User(s) removed successfully",
+    "PATIENT_ADDED": "Patient added successfully",
+    "PATIENT_UPDATED": "Patient updated successfully",
+    "PATIENT_REMOVED": "Patient(s) removed successfully",
+    "VISIT_ADDED": "Visit added successfully",
+    "VISIT_UPDATED": "Visit updated successfully",
+    "VISIT_REMOVED": "Visit(s) removed successfully",
+    "PASSWORD_RESET_LINK_SENT": "Password reset link sent to email",
+    "REMOVAL_FAILED": "Removal failed"
+  }
+}

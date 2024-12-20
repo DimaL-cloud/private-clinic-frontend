@@ -1,0 +1,114 @@
+{
+  "AUTHENTICATION": "Авторизація",
+  "FORGOT_PASSWORD": "Забули пароль?",
+  "LOGIN": "Увійти",
+  "LOGOUT": "Вийти",
+  "USERNAME": "Ім'я користувача",
+  "USERNAME_REQUIRED": "Ім'я користувача обов'язкове",
+  "PASSWORD": "Пароль",
+  "NEW_PASSWORD": "Новий пароль",
+  "RESET_PASSWORD": "Скинути пароль",
+  "CONFIRM_PASSWORD": "Підтвердіть пароль",
+  "CHANGE_PASSWORD": "Змінити пароль",
+  "PASSWORD_REQUIRED": "Пароль обов'язковий",
+  "PASSWORDS_DO_NOT_MATCH": "Паролі не збігаються",
+  "SEND_PASSWORD_RESET_EMAIL": "Надіслати лист зі скиданням пароля",
+  "EMAIL": "Електронна пошта",
+  "EMAIL_REQUIRED": "Електронна пошта обов'язкова",
+  "EMAIL_FORMAT_INVALID": "Невірний формат електронної пошти",
+  "HOME": "Головна",
+  "ADMIN_PANEL": "Панель адміністратора",
+  "MY_PATIENTS": "Мої пацієнти",
+  "ALL_USERS": "Усі користувачі",
+  "PATIENTS": {
+    "POLICY_NUMBER": "№ полісу",
+    "FULL_NAME": "Повне ім'я",
+    "SEX": "Стать",
+    "BIRTH_DATE": "Дата народження"
+  },
+  "ADD_PATIENT": "Додати пацієнта",
+  "EDIT_PATIENT": "Редагувати пацієнта",
+  "ADD_VISIT": "Додати візит",
+  "EDIT_VISIT": "Редагувати візит",
+  "ADD_USER": "Додати користувача",
+  "EDIT_USER": "Редагувати користувача",
+  "VISIT": {
+    "DATE": "Дата",
+    "TYPE": {
+      "TITLE": "Тип",
+      "CONSULTATION": "Консультація",
+      "DIAGNOSIS": "Діагностика",
+      "TREATMENT": "Лікування",
+      "FOLLOW_UP": "Подальше спостереження",
+      "PREVENTION": "Профілактика",
+      "CHECKUP": "Перевірка",
+      "EMERGENCY": "Невідкладна допомога",
+      "SURGERY": "Хірургія",
+      "VACCINATION": "Вакцинація",
+      "OTHER": "Інше"
+    },
+    "REASON": "Причина",
+    "RESULT": "Результат",
+    "DIAGNOSIS": "Діагноз"
+  },
+  "ACTIONS": {
+    "ADD": "Додати",
+    "EDIT": "Редагувати",
+    "REMOVE": "Видалити",
+    "SAVE": "Зберегти",
+    "CANCEL": "Скасувати",
+    "GENERATE_REPORT": "Згенерувати звіт"
+  },
+  "TABS": {
+    "GENERAL": "Загальна інформація",
+    "VISITS": "Візити",
+    "MEDICINES": "Ліки"
+  },
+  "ADD_MEDICINE": "Додати ліки",
+  "EDIT_MEDICINE": "Редагувати ліки",
+  "MEDICINE": {
+    "NAME": "Назва",
+    "TYPE": {
+      "TITLE": "Тип",
+      "TABLET": "Таблетка",
+      "SYRUP": "Сироп",
+      "POWDER": "Порошок",
+      "CAPSULE": "Капсула",
+      "OINTMENT": "Мазь",
+      "INJECTION": "Ін'єкція",
+      "OTHER": "Інше"
+    },
+    "COMPOSITION": "Склад",
+    "USAGE_RECOMMENDATIONS": "Рекомендації щодо використання"
+  },
+  "GENDER": {
+    "MALE": "Чоловіча",
+    "FEMALE": "Жіноча",
+    "NON_SPECIFIED": "Не вказано"
+  },
+  "USER": {
+    "FULL_NAME": "Повне ім'я",
+    "ROLE": {
+      "TITLE": "Роль",
+      "ADMIN": "Адміністратор",
+      "DOCTOR": "Доктор"
+    },
+    "USERNAME": "Ім'я користувача",
+    "EMAIL": "Електронна пошта"
+  },
+  "TOAST": {
+    "LOGIN_SUCCESSFUL": "Вхід успішно виконано",
+    "LOGIN_FAILED": "Не вдалося увійти",
+    "USER_ADDED": "Користувача успішно додано",
+    "USER_UPDATED": "Користувача успішно оновлено",
+    "USER_REMOVED": "Користувача(ів) успішно видалено",
+    "PATIENT_ADDED": "Пацієнта успішно додано",
+    "PATIENT_UPDATED": "Пацієнта успішно оновлено",
+    "PATIENT_REMOVED": "Пацієнта(ів) успішно видалено",
+    "VISIT_ADDED": "Візит успішно додано",
+    "VISIT_UPDATED": "Візит успішно оновлено",
+    "VISIT_REMOVED": "Візит(и) успішно видалено",
+    "PASSWORD_RESET_LINK_SENT": "Посилання для скидання пароля надіслано на електронну пошту",
+    "REMOVAL_FAILED": "Не вдалося видалити"
+  }
+}

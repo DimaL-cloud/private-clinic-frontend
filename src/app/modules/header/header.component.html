@@ -1,0 +1,37 @@
+<nav class="flex justify-between items-center bg-white shadow-md p-4">
+  <a routerLink="/" class="flex items-center space-x-2 no-underline">
+    <img src="/hospital.png" alt="Logo" class="w-10 h-10" />
+    <span class="text-xl font-bold text-gray-700">Private Clinic</span>
+  </a>
+
+  <div class="hidden md:flex items-center space-x-6">
+    <a
+      routerLink="/"
+      class="text-gray-700 hover:text-blue-500 transition duration-300 no-underline">
+      {{ 'HOME' | translate }}
+    </a>
+    <a *ngIf="showAdminPanel()"
+      routerLink="/admin-panel"
+      class="text-gray-700 hover:text-blue-500 transition duration-300 no-underline">
+      {{ 'ADMIN_PANEL' | translate }}
+    </a>
+  </div>
+
+  <div class="flex items-center space-x-4">
+    <button mat-button [matMenuTriggerFor]="languageMenu" class="language-button">
+      <img class="flag-icon" src="/language.svg" alt="Flag" />
+    </button>
+    <mat-menu #languageMenu="matMenu">
+      <button mat-menu-item (click)="onLanguageChange('en')">English</button>
+      <button mat-menu-item (click)="onLanguageChange('uk')">Українська</button>
+    </mat-menu>
+
+    <button
+      mat-flat-button
+      color="primary"
+      (click)="onLogout()"
+      class="ml-4">
+      {{ 'LOGOUT' | translate }}
+    </button>
+  </div>
+</nav>

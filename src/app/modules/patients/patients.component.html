@@ -1,0 +1,68 @@
+<div class="container">
+  <h2 class="table-title">{{ "MY_PATIENTS" | translate }}</h2>
+
+  <div class="actions">
+    <button mat-flat-button color="primary" (click)="addPatient()">
+      {{ "ACTIONS.ADD" | translate }}
+    </button>
+    <button mat-flat-button color="primary" [disabled]="selection.size !== 1" (click)="editPatient()">
+      {{ "ACTIONS.EDIT" | translate }}
+    </button>
+    <button mat-flat-button color="primary" [disabled]="selection.size === 0" (click)="removeSelectedPatients()">
+      {{ "ACTIONS.REMOVE" | translate }}
+    </button>
+  </div>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox
+          (change)="toggleSelectAll($event)"
+          [checked]="isAllSelected()"
+          [indeterminate]="isAnySelected()"
+        ></mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let patient">
+        <mat-checkbox
+          (change)="toggleSelection(patient)"
+          [checked]="selection.has(patient)"
+        ></mat-checkbox>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let patient"> {{ patient.id }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="policyNumber">
+      <th mat-header-cell *matHeaderCellDef> {{ 'PATIENTS.POLICY_NUMBER' | translate }} </th>
+      <td mat-cell *matCellDef="let patient"> {{ patient.policyNumber }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="fullName">
+      <th mat-header-cell *matHeaderCellDef>{{ "PATIENTS.FULL_NAME" | translate }}</th>
+      <td mat-cell *matCellDef="let patient"> {{ patient.fullName }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="gender">
+      <th mat-header-cell *matHeaderCellDef>{{ "PATIENTS.SEX" | translate }}</th>
+      <td mat-cell *matCellDef="let patient"> {{ 'GENDER.' + getEnumKey(patient.gender) | translate }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="birthDate">
+      <th mat-header-cell *matHeaderCellDef> {{ "PATIENTS.BIRTH_DATE" | translate }} </th>
+      <td mat-cell *matCellDef="let patient"> {{ patient.birthDate | date }} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator
+    [length]="length"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[3, 5, 10]"
+    (page)="handlePageEvent($event)"
+  ></mat-paginator>
+</div>

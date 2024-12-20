@@ -1,0 +1,59 @@
+<div class="container">
+  <h2 class="table-title">{{ 'ALL_USERS' | translate }}</h2>
+  <div class="actions">
+    <button mat-flat-button color="primary" (click)="addUser()">{{ 'ACTIONS.ADD' | translate }}</button>
+    <button mat-flat-button color="primary" [disabled]="selection.size !== 1" (click)="editUser()">
+      {{ 'ACTIONS.EDIT' | translate }}
+    </button>
+    <button mat-flat-button color="primary" [disabled]="selection.size === 0" (click)="removeSelectedUsers()">
+      {{ 'ACTIONS.REMOVE' | translate }}
+    </button>
+  </div>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="toggleSelectAll($event)" [checked]="isAllSelected()"></mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let user">
+        <mat-checkbox (change)="toggleSelection(user)" [checked]="selection.has(user)"></mat-checkbox>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let user">{{ user.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="fullName">
+      <th mat-header-cell *matHeaderCellDef>{{ 'USER.FULL_NAME' | translate }}</th>
+      <td mat-cell *matCellDef="let user">{{ user.fullName }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="username">
+      <th mat-header-cell *matHeaderCellDef>{{ 'USER.USERNAME' | translate }}</th>
+      <td mat-cell *matCellDef="let user">{{ user.username }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef>{{ 'USER.EMAIL' | translate }}</th>
+      <td mat-cell *matCellDef="let user">{{ user.email }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="role">
+      <th mat-header-cell *matHeaderCellDef>{{ 'USER.ROLE.TITLE' | translate }}</th>
+      <td mat-cell *matCellDef="let user"> {{ 'USER.ROLE.' + getEnumKey(user.role) | translate }} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator
+    [length]="length"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[3, 5, 10]"
+    aria-label="User pagination"
+    (page)="handlePageEvent($event)"
+  ></mat-paginator>
+</div>

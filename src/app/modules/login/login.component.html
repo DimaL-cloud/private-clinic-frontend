@@ -1,0 +1,48 @@
+<div class="login-container">
+  <mat-card>
+    <mat-card-header class="title">
+      <mat-card-title>{{ 'AUTHENTICATION' | translate }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>{{ 'USERNAME' | translate }}</mat-label>
+          <input matInput formControlName="username" type="text" required />
+          <mat-error *ngIf="loginForm.get('username')?.hasError('required')">
+            {{ 'USERNAME_REQUIRED' | translate }}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>{{ 'PASSWORD' | translate }}</mat-label>
+          <input matInput formControlName="password" type="password" required />
+          <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+            {{ 'PASSWORD_REQUIRED' | translate }}
+          </mat-error>
+        </mat-form-field>
+
+        <div class="actions">
+          <button mat-flat-button color="primary" type="submit" [disabled]="loginForm.invalid">
+            {{ 'LOGIN' | translate }}
+          </button>
+        </div>
+      </form>
+
+      <div class="forgot-password">
+        <a routerLink="/forgot-password" class="forgot-password-link">
+          {{ 'FORGOT_PASSWORD' | translate }}
+        </a>
+      </div>
+
+      <div class="language-button">
+        <button mat-button [matMenuTriggerFor]="languageMenu" class="language-button">
+          <img class="flag-icon" src="/language.svg" alt="Flag" />
+        </button>
+        <mat-menu #languageMenu="matMenu">
+          <button mat-menu-item (click)="onLanguageChange('en')">English</button>
+          <button mat-menu-item (click)="onLanguageChange('uk')">Українська</button>
+        </mat-menu>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

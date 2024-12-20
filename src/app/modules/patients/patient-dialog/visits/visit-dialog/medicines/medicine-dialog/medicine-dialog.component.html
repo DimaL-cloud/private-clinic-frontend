@@ -1,0 +1,34 @@
+<h1 mat-dialog-title>
+  {{ data.medicine ? ('EDIT_MEDICINE' | translate) : ('ADD_MEDICINE' | translate) }}
+</h1>
+<div mat-dialog-content>
+  <form [formGroup]="medicineForm">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>{{ 'MEDICINE.NAME' | translate }}</mat-label>
+      <input matInput formControlName="name" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>{{ 'MEDICINE.COMPOSITION' | translate }}</mat-label>
+      <input matInput formControlName="composition" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>{{ 'MEDICINE.TYPE.TITLE' | translate }}</mat-label>
+      <mat-select formControlName="type">
+        <mat-option *ngFor="let type of medicineTypes" [value]="type">{{ 'MEDICINE.TYPE.' + getEnumKey(type) | translate }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>{{ 'MEDICINE.USAGE_RECOMMENDATIONS' | translate }}</mat-label>
+      <input matInput formControlName="usageRecommendation" />
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">{{ 'ACTIONS.CANCEL' | translate }}</button>
+  <button mat-flat-button color="primary" (click)="onSave()" [disabled]="medicineForm.invalid">
+    {{ 'ACTIONS.ADD' | translate }}
+  </button>
+</div>

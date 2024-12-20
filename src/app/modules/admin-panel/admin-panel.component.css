@@ -1,0 +1,21 @@
+.container {
+  margin: 20px auto;
+  width: 80%;
+}
+
+.actions {
+  margin-bottom: 16px;
+  display: flex;
+  gap: 12px;
+}
+
+table {
+  width: 100%;
+}
+
+.table-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 16px;
+}

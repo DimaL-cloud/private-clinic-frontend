@@ -1,0 +1,56 @@
+<div class="actions">
+  <button mat-flat-button color="primary" (click)="addMedicine()">
+    {{ 'ACTIONS.ADD' | translate }}
+  </button>
+  <button mat-flat-button color="primary" [disabled]="selectedMedicines.size !== 1" (click)="editMedicine()">
+    {{ 'ACTIONS.EDIT' | translate }}
+  </button>
+  <button mat-flat-button color="primary" [disabled]="selectedMedicines.size === 0" (click)="removeSelectedMedicines()">
+    {{ 'ACTIONS.REMOVE' | translate }}
+  </button>
+</div>
+
+<table mat-table [dataSource]="dataSource" class="medicines-table">
+  <ng-container matColumnDef="select">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-checkbox
+        (change)="toggleSelectAllMedicines($event)"
+        [checked]="areAllMedicinesSelected()"
+      ></mat-checkbox>
+    </th>
+    <td mat-cell *matCellDef="let medicine">
+      <mat-checkbox
+        (change)="toggleMedicineSelection(medicine)"
+        [checked]="selectedMedicines.has(medicine)"
+      ></mat-checkbox>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> ID </th>
+    <td mat-cell *matCellDef="let medicine">{{ medicine.id }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>{{ 'MEDICINE.NAME' | translate }}</th>
+    <td mat-cell *matCellDef="let medicine">{{ medicine.name }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="composition">
+    <th mat-header-cell *matHeaderCellDef>{{ 'MEDICINE.COMPOSITION' | translate }}</th>
+    <td mat-cell *matCellDef="let medicine">{{ medicine.composition }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="type">
+    <th mat-header-cell *matHeaderCellDef>{{ 'MEDICINE.TYPE.TITLE' | translate }}</th>
+    <td mat-cell *matCellDef="let medicine">{{ 'MEDICINE.TYPE.' + getEnumKey(medicine.type) | translate }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="usageRecommendation">
+    <th mat-header-cell *matHeaderCellDef>{{ 'MEDICINE.USAGE_RECOMMENDATIONS' | translate }}</th>
+    <td mat-cell *matCellDef="let medicine">{{ medicine.usageRecommendation }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
