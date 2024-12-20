@@ -57,6 +57,10 @@ export class PatientService {
     return this.http.patch<void>(`/api/patients/${uuid}/visits/${visit.id}`, formattedVisit);
   }
 
+  removeVisit(visitId: string): Observable<void> {
+    return this.http.delete<void>(`/api/patients/ignored/visits/${visitId}`);
+  }
+
   generateReport(uuid: string): Observable<Blob> {
     return this.http.get(`/api/patients/${uuid}/visits/report`, { responseType: 'blob' });
   }

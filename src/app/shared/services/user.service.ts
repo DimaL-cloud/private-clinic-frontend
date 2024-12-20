@@ -18,4 +18,12 @@ export class UserService {
     return this.http.get<UsersResponse>(`/api/users?pageSize=${pageSize}&pageIndex=${pageIndex}`);
   }
 
+  editUser(uuid: string, user: User): Observable<void> {
+    return this.http.put<void>(`/api/users/${uuid}`, user);
+  }
+
+  removeUser(uuid: string): Observable<void> {
+    return this.http.delete<void>(`/api/users/${uuid}`);
+  }
+
 }

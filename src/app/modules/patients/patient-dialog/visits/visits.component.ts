@@ -18,6 +18,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {HotToastService} from '@ngxpert/hot-toast';
 import {PatientService} from '../../../../shared/services/patient.service';
 import {GENDER} from '../../../../shared/models/patient.model';
+import {forkJoin} from 'rxjs';
 
 @Component({
   selector: 'app-visits',
@@ -113,10 +114,25 @@ export class VisitsComponent implements OnInit {
   }
 
   removeSelectedVisits(): void {
-    this.visits = this.visits.filter((visit) => !this.visitSelection.has(visit));
-    this.visitSelection.clear();
-    this.updateTableData();
+    const removalObservables = Array.from(this.visitSelection).map((visit) =>
+      this.patientService.removeVisit(visit.id)
+    );
+
+    forkJoin(removalObservables).subscribe({
+      next: () => {
+        this.patientService.getPatientVisits(this.patientId).subscribe((visits) => {
+          this.visits = visits;
+          this.updateTableData();
+          this.toast.success(this.translateService.instant('TOAST.VISIT_REMOVED'));
+          this.visitSelection.clear();
+        });
+      },
+      error: () => {
+        this.toast.error(this.translateService.instant('TOAST.REMOVAL_FAILED'));
+      },
+    });
   }
+
 
   toggleVisitSelection(visit: Visit): void {
     if (this.visitSelection.has(visit)) {
