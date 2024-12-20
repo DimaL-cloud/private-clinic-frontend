@@ -12,7 +12,7 @@ export class User {
 export class UsersResponse {
   constructor(
     public users: User[],
-    public total: number,
+    public totalAmount: number,
   ) {
   }
 }

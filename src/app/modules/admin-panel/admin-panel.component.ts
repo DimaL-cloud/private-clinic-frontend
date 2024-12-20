@@ -61,7 +61,7 @@ export class AdminPanelComponent implements OnInit {
   ngOnInit(): void {
     this.userService.getUsers(this.pageIndex, this.pageSize).subscribe((response) => {
       this.users = response.users;
-      this.length = response.total;
+      this.length = response.totalAmount;
       this.updateTableData();
     });
   }
@@ -73,7 +73,11 @@ export class AdminPanelComponent implements OnInit {
   handlePageEvent(event: PageEvent): void {
     this.pageIndex = event.pageIndex;
     this.pageSize = event.pageSize;
-    this.updateTableData();
+    this.userService.getUsers(this.pageIndex, this.pageSize).subscribe((response) => {
+      this.users = response.users;
+      this.length = response.totalAmount;
+      this.updateTableData();
+    });
   }
 
   toggleSelection(user: User): void {
@@ -107,7 +111,7 @@ export class AdminPanelComponent implements OnInit {
         this.userService.registerUser(result).subscribe((user) => {
           this.userService.getUsers(this.pageIndex, this.pageSize).subscribe((response) => {
             this.users = response.users;
-            this.length = response.total;
+            this.length = response.totalAmount;
             this.updateTableData();
           });
           this.toast.success(this.translate.instant('TOAST.USER_ADDED'));
@@ -129,7 +133,7 @@ export class AdminPanelComponent implements OnInit {
           this.userService.editUser(result.id, result).subscribe(() => {
             this.userService.getUsers(this.pageIndex, this.pageSize).subscribe((response) => {
               this.users = response.users;
-              this.length = response.total;
+              this.length = response.totalAmount;
               this.updateTableData();
             });
             this.toast.success(this.translate.instant('TOAST.USER_UPDATED'));
